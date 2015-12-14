@@ -1,7 +1,6 @@
 
 # android_device_xiaomi_dior
-Device Tree for XiaoMi RedMi Note 4G(QCOM)
-
+Device Tree forked from Stane1983 for XiaoMi RedMi Note 4G(QCOM)
 
 Quick specs for Xiaomi Redmi Note 4G
 ---------------------------------------

@@ -93,7 +93,7 @@ BOARD_HARDWARE_CLASS := device/xiaomi/dior/mkhw/
 # Init
 TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_msm
-TARGET_LIBINIT_DEFINES_FILE := device/xiaomi/dior/init/init_dior.c
+TARGET_LIBINIT_DEFINES_FILE := device/xiaomi/dior/init/init_dior.cpp
 
 # Kernel
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-

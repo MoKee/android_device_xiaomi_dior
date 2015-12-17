@@ -27,8 +27,9 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
 # Art
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.image-dex2oat-filter=everything \
-    dalvik.vm.dex2oat-filter=everything
+    dalvik.vm.dex2oat-filter=speed \
+    dalvik.vm.dex2oat-swap=false \
+    dalvik.vm.image-dex2oat-filter=speed
 
 # ANT+
 PRODUCT_PACKAGES += \
@@ -101,8 +102,7 @@ PRODUCT_PACKAGES += \
 # Filesystem
 PRODUCT_PACKAGES += \
     make_ext4fs \
-    resize2fs \
-    setup_fs
+    resize2fs
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -117,10 +117,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.gps.agps_provider=1
-
-# IO Scheduler
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    sys.io.scheduler=bfq
 
 # IPC router
 PRODUCT_COPY_FILES += \
@@ -146,14 +142,17 @@ PRODUCT_PACKAGES += \
 # Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/configs/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/etc/media_codecs_google_video_le.xml
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
 
+# Media & Audio
 PRODUCT_PACKAGES += \
+    libc2dcolorconvert \
+    libdivxdrmdecrypt \
     libdashplayer \
-    libmm-omxcore \
     libOmxAacEnc \
     libOmxAmrEnc \
     libOmxCore \
@@ -164,8 +163,7 @@ PRODUCT_PACKAGES += \
     libstagefrighthw \
     qcmediaplayer
 
-PRODUCT_BOOT_JARS += \
-    qcmediaplayer
+PRODUCT_BOOT_JARS += qcmediaplayer
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -218,28 +216,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine-8226.conf:system/etc/thermal-engine-8226.conf
 
-# USB
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.isUsbOtgEnabled=1
-
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
-
-# Filesystem management tools
-PRODUCT_PACKAGES += \
-    make_ext4fs \
-    resize2fs \
-    setup_fs \
-    ntfsfix \
-    ntfs-3g \
-    mkntfs \
-    dumpe2fs \
-    e2fsck_static \
-    mke2fs_static \
-    resize2fs_static
 
 # Wifi
 PRODUCT_PACKAGES += \
@@ -265,8 +243,9 @@ PRODUCT_PACKAGES += \
     libcurl \
     libqsap_sdk \
     libQWiFiSoftApCfg \
-    libwcnss_qmi \
     wcnss_service
+
+#    libwcnss_qmi
 
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \

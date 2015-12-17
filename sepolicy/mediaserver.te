@@ -1,2 +1,5 @@
 #============= mediaserver ==============
-allow mediaserver system_server:unix_stream_socket { read write };
+allow mediaserver socket_device:sock_file write;
+
+# For text relocations in /system/vendor/lib/libFaceProc.so
+allow mediaserver system_file:file execmod;

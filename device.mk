@@ -119,8 +119,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.gps.agps_provider=1
 
 # IO Scheduler
-PRODUCT_PROPERTY_OVERRIDES += \
-    sys.io.scheduler=bfq
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    sys.io.scheduler=bfq
 
 # IPC router
 PRODUCT_COPY_FILES += \

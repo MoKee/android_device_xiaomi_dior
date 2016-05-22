@@ -27,7 +27,6 @@
 #include "power.h"
 
 #define CPUFREQ_PATH "/sys/devices/system/cpu/cpu0/cpufreq/"
-#define MSM_THERMAL "/sys/kernel/msm_thermal/"
 #define INTERACTIVE_PATH "/sys/devices/system/cpu/cpufreq/interactive/"
 #define WAKE_GESTURE_PATH "/sys/android_touch/doubletap2wake"
 
@@ -105,6 +104,8 @@ static void power_set_interactive(__attribute__((unused)) struct power_module *m
                         profiles[current_power_profile].go_hispeed_load);
         sysfs_write_str(INTERACTIVE_PATH "target_loads",
                         profiles[current_power_profile].target_loads);
+        sysfs_write_int(CPUFREQ_PATH "scaling_min_freq",
+                        profiles[current_power_profile].scaling_min_freq);
     } else {
         sysfs_write_int(INTERACTIVE_PATH "hispeed_freq",
                         profiles[current_power_profile].hispeed_freq_off);
@@ -112,6 +113,8 @@ static void power_set_interactive(__attribute__((unused)) struct power_module *m
                         profiles[current_power_profile].go_hispeed_load_off);
         sysfs_write_str(INTERACTIVE_PATH "target_loads",
                         profiles[current_power_profile].target_loads_off);
+        sysfs_write_int(CPUFREQ_PATH "scaling_min_freq",
+                        profiles[current_power_profile].scaling_min_freq_off);
     }
 }
 
@@ -145,8 +148,8 @@ static void set_power_profile(int profile)
                     profiles[profile].target_loads);
     sysfs_write_int(CPUFREQ_PATH "scaling_max_freq",
                     profiles[profile].scaling_max_freq);
-    sysfs_write_int(MSM_THERMAL "user_maxfreq",
-                    profiles[profile].user_maxfreq);
+    sysfs_write_int(CPUFREQ_PATH "scaling_min_freq",
+                    profiles[profile].scaling_min_freq);
 
     current_power_profile = profile;
 }

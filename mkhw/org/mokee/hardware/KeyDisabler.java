@@ -17,8 +17,8 @@
 package org.mokee.hardware;
 
 import org.mokee.internal.util.FileUtils;
-
 import java.io.File;
+
 /*
  * Disable capacitive keys
  *
@@ -26,21 +26,22 @@ import java.io.File;
  * can be fully disabled for replacement with a soft navbar. You
  * really should not be using this on a device with mechanical or
  * otherwise visible-when-inactive keys
- *
  */
 
 public class KeyDisabler {
 
-    private static String CONTROL_PATH = "/sys/bus/i2c/drivers/atmel_mxt_ts/5-004b/keys_off";
-
-    public static boolean isSupported() { return true; }
+    private static String CONTROL_PATH = "/sys/devices/gpio_keys.76/disabled_keys";
+    
+    public static boolean isSupported() {
+        return true; 
+    }
 
     public static boolean isActive() {
         return (FileUtils.readOneLine(CONTROL_PATH).equals("0"));
     }
 
     public static boolean setActive(boolean state) {
-        return FileUtils.writeLine(CONTROL_PATH, (state ? "1" : "0"));
+        return FileUtils.writeLine(CONTROL_PATH, (state ? "0" : "1"));
     }
 
 }

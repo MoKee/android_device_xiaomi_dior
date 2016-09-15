@@ -1,8 +1,8 @@
 # Camera
 /data/cam_socket.*                                                          u:object_r:camera_socket:s0
 
-# MKHW
-/sys/devices/gpio_keys.75/disabled_keys                                     u:object_r:vibeamp_sysfs:s0
+# Key Disabler
+/sys/devices/gpio_keys.75/disabled_keys                                     u:object_r:display_sysfs:s0
 
 /dev/block/platform/msm_sdcc\.1/by-name/persist                             u:object_r:persist_block_device:s0
 /sbin/chargeonlymode                                                        u:object_r:chargeonlymode:s0

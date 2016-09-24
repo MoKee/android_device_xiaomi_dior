@@ -17,7 +17,6 @@
 package org.mokee.hardware;
 
 import org.mokee.internal.util.FileUtils;
-import java.io.File;
 
 /*
  * Disable capacitive keys

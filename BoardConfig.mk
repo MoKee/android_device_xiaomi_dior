@@ -90,6 +90,9 @@ BOARD_HARDWARE_CLASS := \
     hardware/mokee/mkhw \
     $(LOCAL_PATH)/mkhw
 
+# Headers
+TARGET_SPECIFIC_HEADER_PATH := device/xiaomi/dior/include
+
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_dior
 TARGET_RECOVERY_DEVICE_MODULES := libinit_dior

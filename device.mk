@@ -79,7 +79,8 @@ PRODUCT_PACKAGES += \
     copybit.msm8226 \
     gralloc.msm8226 \
     hwcomposer.msm8226 \
-    memtrack.msm8226
+    memtrack.msm8226 \
+    liboverlay
 
 # DRM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -105,6 +106,21 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     gps.msm8226
 
+PRODUCT_PACKAGES += \
+    gps.conf \
+    flp.conf \
+    izat.conf \
+    quipc.conf \
+    sap.conf
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.gps.agps_provider=1
+
+# Graphics
+PRODUCT_PACKAGES += \
+    libGLES_android \
+    libstlport
+
 # IPC router
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
@@ -129,18 +145,25 @@ PRODUCT_PACKAGES += \
 # Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    $(LOCAL_PATH)/configs/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
+    $(LOCAL_PATH)/configs/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
 
-# Media & Audio
 PRODUCT_PACKAGES += \
-      libOmxCore \
-      libOmxVdec \
-      libOmxVenc \
-      libstagefrighthw
+    libc2dcolorconvert \
+    libdivxdrmdecrypt \
+    libextmedia_jni \
+    libOmxAacEnc \
+    libOmxAmrEnc \
+    libOmxCore \
+    libOmxEvrcEnc \
+    libOmxQcelp13Enc \
+    libOmxVdec \
+    libOmxVenc \
+    libOmxVidcCommon \
+    libstagefrighthw
 
 # MKActions
 PRODUCT_PACKAGES += \
@@ -178,8 +201,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     power.msm8226
 
+# Qualcomm
 PRODUCT_PROPERTY_OVERRIDES += \
-     ro.vendor.extension_library=/vendor/lib/libqti-perfd-client.so
+    persist.timed.enable=true \
+    ro.vendor.extension_library=/vendor/lib/libqti-perfd-client.so
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -196,9 +221,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine-8226.conf:system/etc/thermal-engine-8226.conf
 
-# Time services
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.timed.enable=true
+PRODUCT_PACKAGES += \
+    com.android.future.usb.accessory
 
 # Wifi
 PRODUCT_PACKAGES += \
@@ -220,16 +244,22 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     libcurl \
+    libcnefeatureconfig \
     libqsap_sdk \
     libQWiFiSoftApCfg \
+    wcnss_service \
     libwcnss_qmi \
-    wcnss_service
+    libxml2
 
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
     persist.debug.wfd.enable=1 \
     persist.sys.wfd.virtual=0 \
     ro.disableWifiApFirmwareReload=true
+
+# IO Scheduler
+PRODUCT_PROPERTY_OVERRIDES += \
+    sys.io.scheduler=bfq
 
 # LTE, GSM/WCDMA
 PRODUCT_PROPERTY_OVERRIDES += \
